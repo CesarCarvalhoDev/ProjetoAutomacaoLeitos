@@ -1,0 +1,38 @@
+<?php 
+
+class Connect
+{
+private static $host = "localhost";
+private static $user = "CESARADM";
+private static $password =  "rasen1063";
+private static $database  = "teste_automacao";
+private static $conn;
+
+public static function ConnectDataBase()
+{
+    if(self::$conn === null)
+    {
+        self::$conn = new mysqli(self::$host,self::$user,self::$password, self::$database);
+
+        if(self::$conn->connect_error){
+            die("Erro ao connectar ao banco de dados");
+            
+        }
+    }
+    return self::$conn;
+}
+
+public static function CloseConnect()
+{
+    if(self::$conn != null)
+    {
+        self::$conn = self::$conn -> close();
+    }
+}
+
+}
+if($conn = Connect::ConnectDataBase())
+{
+    echo("Conexao realizada");
+}
+?>
