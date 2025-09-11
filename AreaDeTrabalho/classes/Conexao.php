@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 class Connect
 {
 private static $host = "localhost";
@@ -8,7 +7,7 @@ private static $password =  "rasen1063";
 private static $database  = "teste_automacao";
 private static $conn;
 
-public static function ConnectDataBase()
+public static function ConexaoBancoDeDados()
 {
     if(self::$conn === null)
     {
@@ -22,7 +21,7 @@ public static function ConnectDataBase()
     return self::$conn;
 }
 
-public static function CloseConnect()
+public static function FecharConexao()
 {
     if(self::$conn != null)
     {
@@ -30,9 +29,5 @@ public static function CloseConnect()
     }
 }
 
-}
-if($conn = Connect::ConnectDataBase())
-{
-    echo("Conexao realizada");
 }
 ?>
