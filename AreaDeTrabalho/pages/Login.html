@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Funcionário</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #10AB58, #067A3B);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #10AB58;
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 12px;
+            background: #10AB58;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #0d8c47;
+        }
+
+        .error-msg {
+            margin-top: 1rem;
+            color: red;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login Funcionário</h2>
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <!-- Mensagem de erro opcional -->
+        <?php if (isset($_GET['erro'])): ?>
+            <div class="error-msg">E-mail ou senha inválidos!</div>
+        <?php endif; ?>
+
+        <div class="footer">
+            &copy; <?= date("Y"); ?> Sistema Hospitalar
+        </div>
+    </div>
+</body>
+</html>
