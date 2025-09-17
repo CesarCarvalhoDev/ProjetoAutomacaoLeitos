@@ -1,11 +1,11 @@
 <?php
-class Connect
+class Conexao
 {
 private static $host = "localhost";
 private static $user = "CESARADM";
 private static $password =  "rasen1063";
 private static $database  = "teste_automacao";
-private static $conn;
+public static $conn;
 
 public static function ConexaoBancoDeDados()
 {
