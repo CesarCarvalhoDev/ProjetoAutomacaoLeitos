@@ -1,10 +1,12 @@
 <?php 
+require_once __DIR__ . '../config/Conexao.php';
+
 class Paciente
 {
 
-    public function __construct($conn)
+    public function __construct()
     {
-        $this->conn = $conn;
+        $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
     public function Cadastrar($cpf,$nome,$sexo,$idade,$num_leito,$cracha_medico)

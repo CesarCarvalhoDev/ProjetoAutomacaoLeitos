@@ -1,5 +1,5 @@
 <footer>
-    <div class="footer_infos">
-    <?echo(date("yyyy") . "<small>Todos Direitos Reservados</small>)" )?>
+    <div class="text-info">
+        <p><? date("dd/mm/yyyy") ?> Todos direitos reservados</p>
     </div>
 </footer>

@@ -1,11 +1,39 @@
-<header>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
     <div class="logo">
         <img src="" alt="">
     </div>
-    <form action="" method="get">
-        <input type="text" name="termo_pesquisa" class="btn-lg-normal" placeholder="Pesquisar">
-        <button type="submit" name="btn-submit" id="btn-buscar" aria-label="Buscar">
-            <img src="" alt="" class="icon" id="lupa">
-        </button>
-    </form>
+        <div class="menu" id="menu-log">
+            <ul>
+                <a href="" class="link">
+                    <li id="">DashBoard</li>
+                </a>
+                <a href="" class="link">
+                    <li id="">Pacientes</li>
+                </a>
+                <a href="" class="link">
+                    <li id="">Mais</li>
+                </a>
+            </ul>
+        </div>
+        <div class="menu" id="menu-deslog">
+            <div class="card">
+                <div class="icon" id="icon-user">
+                    <img src="" alt="">
+                </div>
+                <div class="link" id="link-redirecionar-login">
+                    <a href="">
+                        <p>Logar</p>
+                    </a>
+                </div>
+            </div>
+        </div>
 </header>
