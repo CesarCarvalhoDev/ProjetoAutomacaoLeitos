@@ -4,7 +4,7 @@ class EnvLoader
     public static function Load(string $path)
     {
         if (!file_exists($path)) {
-            throw new Exception('.env file not found.');
+            throw new Exception('.env não encontrado.');
         }
 
         $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
