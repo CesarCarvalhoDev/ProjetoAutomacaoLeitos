@@ -1,0 +1,13 @@
+# Arquivo: AreaDeTrabalho/public/.htaccess
+
+RewriteEngine On
+
+# IMPORTANTE: A BASE DE REESCRITA DEVE SER O CAMINHO DA PASTA 'public'
+# RELATIVO À RAIZ DO SEU LOCALHOST.
+# Sua URL é: localhost/GitHub/ProjetoAutomacaoLeitos/AreaDeTrabalho/public/
+RewriteBase /GitHub/ProjetoAutomacaoLeitos/AreaDeTrabalho/public/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Redireciona tudo para o index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
