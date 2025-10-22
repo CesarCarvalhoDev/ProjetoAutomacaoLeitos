@@ -21,13 +21,13 @@ class Funcionario
         return $result->fetch_assoc() ?: null;
     }
 
-    public function CadastroFuncionario($nome, $cpf, $data_nasc, $sexo, $telefone, $email, $senha, $endereco_rua, $endereco_num, $endereco_bairro, $cargo_id, $data_admissao)
+    public function CadastroFuncionario($nome, $cpf, $data_nasc, $sexo, $telefone, $email, $senha, $endereco, $bairro, $cargo_id, $data_admissao)
     {
-        $sql = "INSERT INTO funcionarios (nome, cpf, data_nasc, sexo, telefone, email, senha, endereco_rua, endereco_num, endereco_bairro, cargo_id, data_admissao) 
+        $sql = "INSERT INTO funcionarios (nome, cpf, data_nasc, sexo, telefone, email, senha, endereco, bairro, cargo_id, data_admissao) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param(
+        $stmt->bindValue(
             "ssssssssssis",
             $nome, $cpf, $data_nasc, $sexo, $telefone, $email, $senha, $endereco_rua, $endereco_num, $endereco_bairro, $cargo_id, $data_admissao
         );

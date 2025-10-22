@@ -10,9 +10,9 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "username": "CESARADM",
             "database": "test",
-            "name": "conn"
+            "name": "connexao",
+            "username": "CESARADM"
         }
     ]
 }
