@@ -1,1 +1,42 @@
-show
+CREATE TABLE funcionarios(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+sexo VARCHAR(10) NOT NULL,
+idade INT NOT NULL,
+data_admissao DATE NOT NULL,
+cargo VARCHAR(100)
+);
+
+CREATE TABLE setores(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE leitos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+num_leito INT NOT NULL,
+id_setor INT NOT NULL,
+FOREIGN KEY (id_setor) REFERENCES setores(id)
+);
+
+CREATE TABLE pacientes(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+sexo VARCHAR(10) NOT NULL,
+idade INT NOT NULL,
+id_leito INT NOT NULL,
+id_func_resp INT NOT NULL,
+FOREIGN KEY (id_leito) REFERENCES leitos(id),
+FOREIGN KEY (id_func_resp) REFERENCES funcionario(id)
+);
+
+CREATE TABLE pedidos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+status_pedido VARCHAR(100) DEFAULT "Em aberto",
+tipo_pedido VARCHAR(100) NOT NULL,
+descricao VARCHAR(300) NOT NULL,
+id_paciente INT NOT NULL,
+id_setor INT NOT NULL
+FOREIGN KEY (id_paciente) REFERENCES pacientes(id),
+FOREIGN KEY (id_setor) REFERENCES setores(id)
+);
