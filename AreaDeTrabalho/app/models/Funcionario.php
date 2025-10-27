@@ -31,7 +31,6 @@ class Funcionario
             "ssssssssssis",
             $nome, $cpf, $data_nasc, $sexo, $telefone, $email, $senha, $endereco_rua, $endereco_num, $endereco_bairro, $cargo_id, $data_admissao
         );
-
-        return $stmt->execute();
+        return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar";
     }
 }

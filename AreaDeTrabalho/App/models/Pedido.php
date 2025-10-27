@@ -2,25 +2,23 @@
 
 class Pedido
 {
-    public string $status;
-    public string $tipo_pedido;
-    public string $descricao_breve;
-
-
+    
     public function __construct($conn)
     {
-        $this->conn = $conn;
+        $this->conn =  Conexao::ConexaoBancoDeDados();
     }
 
     public function CriarPedido($tipo_pedido,$descricao_breve)
     {
-        
+        $sql = "INSERT INTO pedidos ('tipo_pedido', 'descricao_breve') VALUES ('ss')";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(
+            "ss",
+            $tipo_pedido,$descricao_breve
+        );
+        return $stmt->execute() ? "Pedido Criado com sucesso" : "Erro Ao Criar";
     }
 
-
+    
 }
-
-
-
-
 ?>
