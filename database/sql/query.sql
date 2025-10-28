@@ -36,7 +36,7 @@ status_pedido VARCHAR(100) DEFAULT "Em aberto",
 tipo_pedido VARCHAR(100) NOT NULL,
 descricao VARCHAR(300) NOT NULL,
 id_paciente INT NOT NULL,
-id_setor INT NOT NULL
+id_setor INT NOT NULL,
 FOREIGN KEY (id_paciente) REFERENCES pacientes(id),
 FOREIGN KEY (id_setor) REFERENCES setores(id)
 );
