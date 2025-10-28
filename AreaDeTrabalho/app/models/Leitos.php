@@ -4,6 +4,8 @@ require_once __DIR__ . '../config/Conexao.php';
 
 class Leitos
 {
+    private $conn;
+
     public function __construct()
     {
         $this->conn = Conexao::ConexaoBancoDeDados();

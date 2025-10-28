@@ -4,7 +4,8 @@ require_once __DIR__ . '../config/Conexao.php';
 
 class Pedido
 {
-    
+    private $conn;
+
     public function __construct($conn)
     {
         $this->conn =  Conexao::ConexaoBancoDeDados();
@@ -21,6 +22,8 @@ class Pedido
         return $stmt->execute() ? "Pedido Criado com sucesso" : "Erro Ao Criar";
     }
 
-    
+    public function AtribuirPedido(){
+        
+    }
 }
 ?>

@@ -3,6 +3,7 @@ require_once __DIR__ . '../config/Conexao.php';
 
 class Paciente
 {
+    private $conn;
 
     public function __construct()
     {
