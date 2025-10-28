@@ -1,10 +1,18 @@
+CREATE TABLE cargos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+descricao VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE funcionarios(
 id INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100) NOT NULL,
 sexo VARCHAR(10) NOT NULL,
 idade INT NOT NULL,
 data_admissao DATE NOT NULL,
-cargo VARCHAR(100)
+cargo_id VARCHAR(100) NOT NULL,
+email VARCHAR(100) NOT NULL,
+senha VARCHAR(100) NOT NULL,
+FOREIGN KEY (cargo_id) REFERENCES cargos(id)
 );
 
 CREATE TABLE setores(
@@ -16,6 +24,7 @@ CREATE TABLE leitos(
 id INT AUTO_INCREMENT PRIMARY KEY,
 num_leito INT NOT NULL,
 id_setor INT NOT NULL,
+status_leito VARCHAR(100) NOT NULL,
 FOREIGN KEY (id_setor) REFERENCES setores(id)
 );
 
