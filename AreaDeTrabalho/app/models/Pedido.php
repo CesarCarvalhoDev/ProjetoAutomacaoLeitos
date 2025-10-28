@@ -1,28 +1,45 @@
 <?php 
 
-require_once __DIR__ . '../config/Conexao.php';
+require_once __DIR__ . '/../config/Conexao.php';
 
 class Pedido
 {
     private $conn;
 
-    public function __construct($conn)
+    public function __construct()
     {
-        $this->conn =  Conexao::ConexaoBancoDeDados();
+        $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function CriarPedido($tipo_pedido,$descricao_breve)
+    public function CriarPedido($status_pedido, $tipo_pedido, $descricao, $id_paciente, $id_setor)
     {
-        $sql = "INSERT INTO pedidos ('tipo_pedido', 'descricao_breve') VALUES ('ss')";
+        $sql = "INSERT INTO pedidos (status_pedido, tipo_pedido, descricao, id_paciente, id_setor) 
+                VALUES (?, ?, ?, ?, ?)";
+        
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(
-            "ss",
-            $tipo_pedido,$descricao_breve
+
+        if (!$stmt) {
+            die("Erro ao preparar statement: " . $this->conn->error);
+        }
+
+        $stmt->bind_param(
+            "sssii",
+            $status_pedido,
+            $tipo_pedido,
+            $descricao,
+            $id_paciente,
+            $id_setor
         );
-        return $stmt->execute() ? "Pedido Criado com sucesso" : "Erro Ao Criar";
+
+        if ($stmt->execute()) {
+            return "Pedido criado com sucesso!";
+        } else {
+            return "Erro ao criar pedido: " . $stmt->error;
+        }
     }
 
-    public function AtribuirPedido(){
+    public function AtribuirPedido()
+    {
         
     }
 }

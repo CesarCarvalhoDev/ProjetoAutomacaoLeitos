@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../config/Conexao.php';
+require_once __DIR__ . '/../config/Conexao.php';
 
 class Funcionario
 {
@@ -13,23 +13,32 @@ class Funcionario
 
     public function LoginFuncionario($email, $senha)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM funcionarios WHERE email = ? AND senha = ? LIMIT 1");
-        $stmt->bind_param("ss", $email, $senha);
+        $stmt = $this->conn->prepare("SELECT * FROM funcionarios WHERE email = ? LIMIT 1");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc() ?: null;
+        $usuario = $result->fetch_assoc();
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            return $usuario;
+        }
+        return null;
     }
 
-    public function CadastroFuncionario($nome, $cpf, $data_nasc, $sexo, $telefone, $email, $senha, $endereco, $bairro, $cargo_id, $data_admissao)
+    public function CadastroFuncionario($nome, $sexo, $idade, $data_admissao, $email, $senha, $cargo_id)
     {
-        $sql = "INSERT INTO funcionarios (nome, cpf, data_nasc, sexo, telefone, email, senha, endereco, bairro, cargo_id, data_admissao) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, email, senha, cargo_id) 
+                VALUES (?,?,?,?,?,?,?)";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(
-            "ssssssssssis",
-            $nome, $cpf, $data_nasc, $sexo, $telefone, $email, $senha, $endereco_rua, $endereco_num, $endereco_bairro, $cargo_id, $data_admissao
-        );
-        return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar";
+        if (!$stmt) {
+            die("Erro ao preparar statement: " . $this->conn->error);
+        }
+
+        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+        $stmt->bind_param("ssisssi", $nome, $sexo, $idade, $data_admissao, $email, $senhaHash, $cargo_id);
+
+        return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar: " . $stmt->error;
     }
 }

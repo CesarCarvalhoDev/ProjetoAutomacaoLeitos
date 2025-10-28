@@ -2,33 +2,30 @@
 
 require_once __DIR__ . '/../config/Conexao.php';
 
-class Leitos
+class Setor
 {
-    private $conn;
+    private $conn; 
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function CadastrarLeito($num_leito, $id_setor, $status_leito)
+    public function Cadastrar($nome)
     {
-        $sql = "INSERT INTO leitos (num_leito, id_setor, status_leito) VALUES (?, ?, ?)";
-        
+        $sql = "INSERT INTO setores (nome) VALUES (?)";
+
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Erro ao preparar statement: " . $this->conn->error);
         }
 
-        
-        $stmt->bind_param("iis", $num_leito, $id_setor, $status_leito);
+        $stmt->bind_param("s", $nome);
 
         if ($stmt->execute()) {
-            return "Cadastro Realizado com sucesso!";
+            return "Cadastro realizado com sucesso!";
         } else {
             return "Erro ao cadastrar: " . $stmt->error;
         }
     }
 }
-
 ?>
