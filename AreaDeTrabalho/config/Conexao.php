@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/EnvLoader.php'; // Corrija esse caminho conforme necessário
-EnvLoader::Load(__DIR__ . '/../../.env');
+require_once  'EnvLoader.php';
+EnvLoader::Load(__DIR__ . '../../.env');
 
 class Conexao
 {

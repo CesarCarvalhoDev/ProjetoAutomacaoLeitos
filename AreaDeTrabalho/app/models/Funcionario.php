@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../config/Conexao.php';
+require_once '../../config/Conexao.php';
 
 class Funcionario
 {
@@ -11,7 +11,7 @@ class Funcionario
         $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function LoginFuncionario($email, $senha)
+    public function Login($email, $senha)
     {
         $stmt = $this->conn->prepare("SELECT * FROM funcionarios WHERE email = ? LIMIT 1");
         $stmt->bind_param("s", $email);
@@ -25,7 +25,7 @@ class Funcionario
         return null;
     }
 
-    public function CadastroFuncionario($nome, $sexo, $idade, $data_admissao, $email, $senha, $cargo_id)
+    public function Cadastro($nome, $sexo, $idade, $data_admissao, $email, $senha, $cargo_id)
     {
         $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, email, senha, cargo_id) 
                 VALUES (?,?,?,?,?,?,?)";
