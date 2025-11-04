@@ -1,7 +1,18 @@
+<<<<<<< HEAD
 DROP DATABASE IF EXISTS db_automacao_leitos;
 CREATE DATABASE db_automacao_leitos
 CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
+=======
+CREATE DATABASE IF NOT EXISTS db_automacao_leitos CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+USE db_automacao_leitos;
+
+CREATE TABLE cargos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+descricao VARCHAR(100) NOT NULL
+);
+>>>>>>> 6f0beda75578764689468dca3b191c581e2943ef
 
 USE db_automacao_leitos;
 
