@@ -11,7 +11,7 @@ class Leitos
         $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function CadastrarLeito($num_leito, $id_setor, $status_leito)
+    public function Cadastrar($num_leito, $id_setor, $status_leito)
     {
         $sql = "INSERT INTO leitos (num_leito, id_setor, status_leito) VALUES (?, ?, ?)";
         

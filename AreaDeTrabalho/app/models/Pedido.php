@@ -11,7 +11,7 @@ class Pedido
         $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function CriarPedido($status_pedido, $tipo_pedido, $descricao, $id_paciente, $id_setor)
+    public function Criar($status_pedido, $tipo_pedido, $descricao, $id_paciente, $id_setor)
     {
         $sql = "INSERT INTO pedidos (status_pedido, tipo_pedido, descricao, id_paciente, id_setor) 
                 VALUES (?, ?, ?, ?, ?)";

@@ -10,9 +10,9 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "database": "db_automacao_leitos",
-            "username": "CESARADM",
-            "name": "conn"
+            "name": "conn",
+            "database": "test",
+            "username": "CESARADM"
         }
     ]
 }
