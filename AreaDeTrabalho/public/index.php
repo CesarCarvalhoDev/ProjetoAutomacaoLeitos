@@ -5,8 +5,10 @@
 $routes = include __DIR__ . '/../config/routes.php';  // Carrega as rotas definidas
 
 // 2. OBTENÇÃO E LIMPEZA DA URI
-$uri = $_SERVER['REQUEST_URI'] ?? '/';  // Pega a URI da requisição
-$uri = strtok($uri, '?'); // Remove query string, se houver
+// CORREÇÃO AQUI: Usamos $_GET['url'] que é fornecido pelo .htaccess com a URI limpa.
+$uri = $_GET['url'] ?? '/'; // Pega o valor do parâmetro 'url'
+
+// O strtok() para remover query string não é estritamente necessário agora, mas mantemos o trim.
 $uri = trim($uri, '/');    // Limpa as barras no início e no final
 
 // Se a URI estiver vazia, define como a página inicial

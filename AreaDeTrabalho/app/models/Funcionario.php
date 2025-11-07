@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../config/Conexao.php';
+require_once __DIR__ . '/../../config/Conexao.php';
 
 class Funcionario
 {

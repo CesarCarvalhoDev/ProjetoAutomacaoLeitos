@@ -1,11 +1,16 @@
+<IfModule mod_rewrite.c>
 RewriteEngine On
 
-# Define a base de reescrita
-RewriteBase /ProjetoAutomacaoLeitos/AreaDeTrabalho/public/
+# Base de reescrita CORRETA para XAMPP: o caminho no servidor web
+RewriteBase /AreaDeTrabalho/public/
 
-# Não reescreve se o arquivo ou diretório já existir
+# Se o arquivo ou diretório existir, não reescreve
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Redireciona tudo para index.php
-RewriteRule ^(.*)$ index.php [QSA,L]
+# Redireciona tudo para index.php e passa o parâmetro "url"
+# O $1 conterá apenas o path limpo (ex: 'sobre' ou 'login/submit')
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+
+</IfModule>

@@ -1,5 +1,5 @@
 <?php  
-require_once("../models/Funcionario.php");
+require_once __DIR__ . '/../models/Funcionario.php';
 
 class LoginController
 {

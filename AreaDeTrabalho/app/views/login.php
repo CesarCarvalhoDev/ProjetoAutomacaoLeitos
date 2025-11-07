@@ -10,7 +10,7 @@
 <body class="bg-light d-flex align-items-center justify-content-center vh-100">
     <main>
         <div class="card shadow p-4" id="form-card-login">
-            <form action="../../app/controllers/Cadastro_Login.php" method="post">
+            <form action="login/submit" method="post">
                 <h4 class="text-center mb-4">Login</h4>
 
                 <div class="mb-3">
