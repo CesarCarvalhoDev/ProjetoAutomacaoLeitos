@@ -40,7 +40,7 @@ idade INT NOT NULL,
 id_leito INT NOT NULL,
 id_func_resp INT NOT NULL,
 FOREIGN KEY (id_leito) REFERENCES leitos(id),
-FOREIGN KEY (id_func_resp) REFERENCES funcionario(id)
+FOREIGN KEY (id_func_resp) REFERENCES funcionarios(id)
 );
 
 CREATE TABLE pedidos(
