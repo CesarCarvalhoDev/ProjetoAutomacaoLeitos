@@ -2,8 +2,15 @@
 // Arquivo: config/routes.php
 
 return [
-    '/' => 'HomeController@index',           // Rota para a página inicial
-    'login' => 'LoginController@MostrarViewLogin', // Rota para a página de login
-    'login/submit'=>'LoginController@ProcessarFormLogin' 
-    // Outras rotas podem ser adicionadas aqui conforme necessário
+    '/' => 'HomeController@index',
+    'Admin'=> 'AdminController@ViewAdmin',
+    'admin/login' => 'AdminController@ViewLogin',
+    'admin/login/submit'=>'AdminController@ProcessarFormLogin',
+    'Admin/Setor/Cadastro'=>'AdminController@ViewCadastroSetor',
+    'Admin/Setor/Cadastro/submit'=>'AdminController@ProcessarFormCadastroSetor',
+    'Admin/Funcionario/Cadastro'=>'AdminController@ViewCadastroFuncionario',
+    'Admin/Funcionario/Cadastro/submit'=>'AdminController@ProcessarFormCadastroFunc',
+    'Admin/Leito/Cadastro'=>'AdminController@ViewCadastroLeito',
+    'Admin/Leito/Cadastro/submit' => 'AdminController@ProcessarFormCadastroLeito'
 ];
+

@@ -3,7 +3,11 @@
 
 class HomeController {
     public function index() {
-        // Exibe a página inicial
-        require_once __DIR__ . '/../views/home.php';
+        require_once __DIR__ . '/../views/pedido.php';
+    }
+
+    public function ProcessarFormRequisicao()
+    {
+        
     }
 }

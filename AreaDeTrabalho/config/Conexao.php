@@ -1,36 +1,39 @@
 <?php
-require_once  'EnvLoader.php';
-EnvLoader::Load(__DIR__ . '../../.env');
+require_once __DIR__ . '/EnvLoader.php';
 
 class Conexao
 {
-    private static $conn;
+    private static $conn = null;
 
     public static function ConexaoBancoDeDados()
     {
         if (self::$conn === null) {
-            $host = getenv("DB_HOST");
-            $user = getenv("DB_USER");
-            $password = getenv("DB_PASS");
-            $database = getenv("DB_DATABASE");
 
-            self::$conn = new mysqli($host, $user, $password, $database);
+            
+            $envPath = __DIR__ . '/.env';
 
-            if (self::$conn->connect_error) {
-                throw new Exception("Erro ao conectar ao banco de dados: " . self::$conn->connect_error);
+            
+            if (!isset($_ENV['HOST'])) {
+                EnvLoader::Load($envPath);
             }
 
-            self::$conn->set_charset("utf8mb4");
+            
+            $host = getenv('HOST');
+            $usuario = getenv('USER');
+            $senha = getenv('PASS');
+            $banco = getenv('DATABASE');
+            $porta = getenv('PORT') ?: 3306; 
+
+            
+            self::$conn = new mysqli($host, $usuario, $senha, $banco, $porta);
+
+            
+            if (self::$conn->connect_error) {
+                die('Erro de conexão: ' . self::$conn->connect_error);
+            }
         }
 
         return self::$conn;
     }
-
-    public static function FecharConexao()
-    {
-        if (self::$conn !== null) {
-            self::$conn->close();
-            self::$conn = null;
-        }
-    }
 }
+?>

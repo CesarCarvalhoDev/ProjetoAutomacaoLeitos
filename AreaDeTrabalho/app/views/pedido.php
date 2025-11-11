@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Sistema de Requisições</a>
                 <div class="d-flex">
-                     <a href="dashboard.html" class="btn btn-outline-light">Voltar ao Painel</a>
+                     <a href="" class="btn btn-outline-light">Voltar ao Painel</a>
                 </div>
             </div>
         </nav>

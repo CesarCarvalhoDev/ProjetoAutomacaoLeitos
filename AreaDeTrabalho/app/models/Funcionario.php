@@ -2,10 +2,18 @@
 
 require_once __DIR__ . '/../../config/Conexao.php';
 
+/**
+ * Funcionario
+ */
 class Funcionario
 {
     private $conn;
-
+    
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->conn = Conexao::ConexaoBancoDeDados();
@@ -24,20 +32,28 @@ class Funcionario
         }
         return null;
     }
-
-    public function Cadastro($nome, $sexo, $idade, $data_admissao, $email, $senha, $cargo_id)
+    
+    /**
+     * Cadastrar
+     *
+     * @param  mixed $nome
+     * @param  mixed $sexo
+     * @param  mixed $idade
+     * @param  mixed $data_admissao
+     * @param  mixed $cargo_id
+     * @return void
+     */
+    public function Cadastrar(string $nome,string  $sexo,int  $idade,string $data_admissao, int $cargo_id)
     {
-        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, email, senha, cargo_id) 
-                VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, cargo_id) 
+                VALUES (?,?,?,?,?)";
 
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Erro ao preparar statement: " . $this->conn->error);
         }
 
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-        $stmt->bind_param("ssisssi", $nome, $sexo, $idade, $data_admissao, $email, $senhaHash, $cargo_id);
+        $stmt->bind_param("ssisi", $nome, $sexo, $idade, $data_admissao,$cargo_id);
 
         return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar: " . $stmt->error;
     }
