@@ -36,10 +36,24 @@
             <label for="">Leito</label>
             <select name="leito" id="">
                 <?php
-                
+                foreach ($leitos_cadastrados as $leito) {
+                    echo "
+                    <option value='{$leito['id']}'>
+                    Número Leito: {$leito['num_leito']} - Setor: {$leito['nome_setor']}
+                    </option>
+                    ";
+                }
                 ?>
-                <option value=""></option>
             </select>
+            <label for="">Médico Reponsável</label>
+            <select name="medico" id="">
+                <?php
+                foreach ($medicos_cadastrados as $medico) {
+                    echo "<option value='{$medico['id']}'>{$medico['nome']}</option>";
+                }
+                ?>
+            </select>
+            <button type="submit" class="btn btn-info">Cadastrar</button>
         </form>
     </main>
 

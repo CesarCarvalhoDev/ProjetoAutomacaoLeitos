@@ -3,6 +3,7 @@ require_once __DIR__ . '/../models/Funcionario.php';
 require_once __DIR__ . '/../models/Setor.php';
 require_once __DIR__ . '/../models/Cargo.php';
 require_once __DIR__ . '/../models/Leitos.php';
+require_once __DIR__ . '/../models/Paciente.php';
 
 class AdminController
 {
@@ -35,6 +36,16 @@ class AdminController
         $setores_cadastrados = $setores->ExibirSetores();
 
         require_once __DIR__ . '/../views/CadastroLeito.php';
+    }
+
+    public function ViewCadastroPaciente(){
+        $leito = new Leitos();
+        $leitos_cadastrados = $leito->ExibirInfo();
+
+        $funcionario = new Funcionario();
+        $medicos_cadastrados = $funcionario->ExibirMedicos();
+
+        require_once __DIR__ . '/../views/CadastroPaciente.php';
     }
 
     public function ProcessarFormLogin()
@@ -117,6 +128,30 @@ class AdminController
             } else {
                 echo("<script>alert('Erro ao cadastrar');</script>");
             }
+        }
+    }
+
+    public function ProcessarFormCadastroPaciente()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nome = $_POST['nome'];
+            $sexo = $_POST['sexo'];
+            $idade = $_POST['idade'];
+            $id_leito = $_POST['leito'];
+            $id_medico = $_POST['medico'];
+
+            $paciente = new Paciente();
+            $paciente_cadastrado = $paciente->Cadastrar($nome,$sexo,$idade,$id_leito,$id_medico);
+
+            $leito = new Leitos();
+            $leito_modificado = $leito->AlocarPaciente($id_leito);
+
+            if($paciente_cadastrado){
+                echo("<script>alert('Paciente cadastrado com sucesso!');</script>");
+            } else {
+                echo("<script>alert('Erro ao cadastrar paciente!');</script>");
+            }
+
         }
     }
 

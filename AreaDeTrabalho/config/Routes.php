@@ -11,6 +11,9 @@ return [
     'Admin/Funcionario/Cadastro'=>'AdminController@ViewCadastroFuncionario',
     'Admin/Funcionario/Cadastro/submit'=>'AdminController@ProcessarFormCadastroFunc',
     'Admin/Leito/Cadastro'=>'AdminController@ViewCadastroLeito',
-    'Admin/Leito/Cadastro/submit' => 'AdminController@ProcessarFormCadastroLeito'
+    'Admin/Leito/Cadastro/submit' => 'AdminController@ProcessarFormCadastroLeito',
+    'Admin/Paciente/Cadastro' => 'AdminController@ViewCadastroPaciente',
+    'Admin/Paciente/Cadastro/submit' => 'AdminController@ProcessarFormCadastroPaciente',
+    
 ];
 

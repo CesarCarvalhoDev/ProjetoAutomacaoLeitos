@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../config/Conexao.php';
 class Funcionario
 {
     private $conn;
-    
+
     /**
      * __construct
      *
@@ -32,7 +32,7 @@ class Funcionario
         }
         return null;
     }
-    
+
     /**
      * Cadastrar
      *
@@ -43,9 +43,9 @@ class Funcionario
      * @param  mixed $cargo_id
      * @return void
      */
-    public function Cadastrar(string $nome,string  $sexo,int  $idade,string $data_admissao, int $cargo_id)
+    public function Cadastrar(string $nome, string  $sexo, int  $idade, string $data_admissao, int $cargo_id)
     {
-        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, cargo_id) 
+        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, id_func_responsavel) 
                 VALUES (?,?,?,?,?)";
 
         $stmt = $this->conn->prepare($sql);
@@ -53,8 +53,28 @@ class Funcionario
             die("Erro ao preparar statement: " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssisi", $nome, $sexo, $idade, $data_admissao,$cargo_id);
+        $stmt->bind_param("ssisi", $nome, $sexo, $idade, $data_admissao, $cargo_id);
 
         return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar: " . $stmt->error;
+    }
+
+    public function ExibirMedicos()
+    {
+        $sql = 
+        "SELECT 
+        funcionarios.id,
+        funcionarios.nome,
+        funcionarios.sexo,
+        funcionarios.idade,
+        funcionarios.data_admissao,
+        funcionarios.cargo_id
+        FROM funcionarios 
+        INNER JOIN cargos ON cargos.id = funcionarios.cargo_id
+        WHERE cargos.descricao LIKE '%Medico%'";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

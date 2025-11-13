@@ -150,7 +150,7 @@
                             <img src="https://via.placeholder.com/60/ffc107/000000?text=R" alt="Ícone Requisições"
                                 class="logo_funcao mb-3" />
                             <h5 class="card-title">Visualizar Requisições</h5>
-                            <a href="Pedidos/Visualizar" class="btn btn-warning mt-2 stretched-link">Acessar</a>
+                            <a href="Admin/Pedidos/Visualizar" class="btn btn-warning mt-2 stretched-link">Acessar</a>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                             <img src="https://via.placeholder.com/60/0dcaf0/000000?text=ML" alt="Ícone Modificar Leito"
                                 class="logo_funcao mb-3" />
                             <h5 class="card-title">Modificar Leito</h5>
-                            <a href="Leito/Modificar" class="btn btn-info mt-2 stretched-link">Acessar</a>
+                            <a href="Admin/Leito/Modificar" class="btn btn-info mt-2 stretched-link">Acessar</a>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                             <img src="https://via.placeholder.com/60/6f42c1/ffffff?text=MP"
                                 alt="Ícone Modificar Paciente" class="logo_funcao mb-3" />
                             <h5 class="card-title">Modificar Paciente</h5>
-                            <a href="Paciente/Modificar" class="btn btn-secondary mt-2 stretched-link">Acessar</a>
+                            <a href="Admin/Paciente/Modificar" class="btn btn-secondary mt-2 stretched-link">Acessar</a>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
                             <img src="https://via.placeholder.com/60/20c997/ffffff?text=ML2" alt="Ícone Modificar Leito"
                                 class="logo_funcao mb-3" />
                             <h5 class="card-title">Modificar Leito</h5>
-                            <a href="Leito/Modificar" class="btn btn-success mt-2 stretched-link">Acessar</a>
+                            <a href="Admin/Leito/Modificar" class="btn btn-success mt-2 stretched-link">Acessar</a>
                         </div>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                             <img src="https://via.placeholder.com/60/fd7e14/ffffff?text=MF"
                                 alt="Ícone Modificar Funcionário" class="logo_funcao mb-3" />
                             <h5 class="card-title">Modificar Funcionário</h5>
-                            <a href="Funcionario/Modificar" class="btn btn-warning mt-2 stretched-link">Acessar</a>
+                            <a href="Admin/Funcionario/Modificar" class="btn btn-warning mt-2 stretched-link">Acessar</a>
                         </div>
                     </div>
                 </div>
