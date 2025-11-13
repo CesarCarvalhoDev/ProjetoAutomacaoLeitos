@@ -9,6 +9,11 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="statics/css/style.css" /> 
     <title>Nova Requisição de Serviço</title>
 </head>
@@ -50,24 +55,34 @@
                             <label class="form-label fw-bold">Selecione o Tipo de Pedido:</label>
                             <div class="d-flex flex-wrap gap-3" id="box-btn-tipo_pedido">
                                 
-                                <button type="submit" name="tipo_pedido" value="enfermagem" class="btn btn-outline-primary btn-lg d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/30/0d6efd/ffffff?text=E" alt="Ícone Enfermagem" class="icon_tipo me-2"/> 
-                                    Enfermagem
+                            <!-- Botões para seleção do especialista -->
+
+                                <button type="submit" name="tipo_pedido" value="enfermagem" class="btn btn-outline-primary btn-lg d-flex align-items-center" style="min-width:200px">
+                                    <span style="padding: 10px;">
+                                        <i class="fa-solid fa-user-doctor fa-2x" style="padding-right: 10px;"></i>
+                                        Enfermagem
+                                    </span>
                                 </button>
                                 
                                 <button type="submit" name="tipo_pedido" value="camareira" class="btn btn-outline-info btn-lg d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/30/0dcaf0/000000?text=C" alt="Ícone Camareira" class="icon_tipo me-2"/> 
-                                    Camareira
+                                    <span style="padding: 10px;">
+                                        <i class="fa-solid fa-bed fa-2x" style="padding-right: 10px;"></i>
+                                        Camareira
+                                    </span>
                                 </button>
                                 
                                 <button type="submit" name="tipo_pedido" value="manutencao" class="btn btn-outline-warning btn-lg d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/30/ffc107/000000?text=M" alt="Ícone Manutenção" class="icon_tipo me-2"/> 
-                                    Manutenção
+                                    <span style="padding: 10px;">
+                                        <i class="fa-solid fa-screwdriver-wrench fa-2x" style="padding-right: 10px;"></i>
+                                        Manutenção
+                                    </span>
                                 </button>
                                 
                                 <button type="submit" name="tipo_pedido" value="cozinha" class="btn btn-outline-success btn-lg d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/30/198754/ffffff?text=K" alt="Ícone Cozinha" class="icon_tipo me-2"/> 
-                                    Cozinha
+                                    <span style="padding: 10px;">
+                                        <i class="fa-solid fa-bell-concierge fa-2x" style="padding-right: 10px;"></i>
+                                        Cozinha
+                                    </span>
                                 </button>
                                 
                             </div>
