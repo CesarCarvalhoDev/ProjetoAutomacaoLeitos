@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../../config/Conexao.php';
+require_once __DIR__ . '/../../config/Conexao.php';
 
 class Pedido
 {
@@ -11,10 +11,10 @@ class Pedido
         $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function Criar($status_pedido, $tipo_pedido, $descricao, $id_paciente, $id_setor)
+    public function Criar(string $tipo_pedido,string $descricao,int $id_paciente,int $id_setor)
     {
-        $sql = "INSERT INTO pedidos (status_pedido, tipo_pedido, descricao, id_paciente, id_setor) 
-                VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO pedidos (tipo_pedido, descricao, id_paciente, id_setor) 
+                VALUES (?, ?, ?, ?)";
         
         $stmt = $this->conn->prepare($sql);
 
@@ -23,8 +23,7 @@ class Pedido
         }
 
         $stmt->bind_param(
-            "sssii",
-            $status_pedido,
+            "ssii",
             $tipo_pedido,
             $descricao,
             $id_paciente,

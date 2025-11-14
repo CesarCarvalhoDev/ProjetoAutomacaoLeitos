@@ -5,6 +5,7 @@ return [
     '/' => 'TotemController@index',
     'Login/submit' => 'TotemController@ProcessarFormLogin',
     'Home' => 'TotemController@ViewHomePedido',
+    'Home/submit' => 'TotemController@ProcessarFormRequisicao',
     'Admin'=> 'AdminController@ViewAdmin',
     'admin/login' => 'AdminController@ViewLogin',
     'admin/login/submit'=>'AdminController@ProcessarFormLogin',

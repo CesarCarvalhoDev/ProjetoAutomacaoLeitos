@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Leitos.php';
+require_once __DIR__ . '/../models/Paciente.php';
+require_once __DIR__ . '/../models/Pedido.php';
 
 class TotemController
 {
@@ -30,6 +32,25 @@ class TotemController
                 echo "<script>alert('Número de leito inválido');</script>";
                 header("Location: /");
                 exit;
+            }
+        }
+    }
+
+    public function ProcessarFormRequisicao()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $id_paciente = $_POST['id_paciente'];
+            $id_setor = $_POST['id_setor'];
+            $tipo_pedido = $_POST['tipo_pedido'];
+            $descricao = $_POST['descricao'];
+
+            $pedido = new Pedido();
+
+            $novo_pedido = $pedido->Criar($tipo_pedido,$descricao,$id_paciente,$id_setor);
+            
+            if($novo_pedido){
+                echo "<script>alert('Pedido realizado com sucesso');</script>";
             }
         }
     }
