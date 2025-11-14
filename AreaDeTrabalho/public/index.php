@@ -1,19 +1,19 @@
 <?php
+
+session_start();
 $routes = include __DIR__ . '/../config/routes.php';
 
-// Captura o caminho completo (ex: /AreaDeTrabalho/public/Admin/Setor/Cadastro/submit)
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// Remove a parte "/AreaDeTrabalho/public" do início
+
 $basePath = '/AreaDeTrabalho/public';
 if (strpos($uri, $basePath) === 0) {
     $uri = substr($uri, strlen($basePath));
 }
 
-// Remove barras extras do começo e fim
+
 $uri = trim($uri, '/');
 
-// Se estiver vazio, define como rota inicial
 if ($uri === '') {
     $uri = '/';
 }

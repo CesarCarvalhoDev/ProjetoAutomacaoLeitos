@@ -21,10 +21,13 @@ class AdminController
     {
         require_once __DIR__ . '/../views/CadastroSetor.php';
     }
+    
     public function ViewCadastroFuncionario()
     {
         $cargos = new Cargo();
         $cargos_cadastrados = $cargos->ExibirCargosCadastrados();
+        $setores = new Setor();
+        $setores_cadastrados = $setores->ExibirSetores();
 
         require_once __DIR__ . '/../views/CadastroFunc.php';
         
@@ -38,7 +41,8 @@ class AdminController
         require_once __DIR__ . '/../views/CadastroLeito.php';
     }
 
-    public function ViewCadastroPaciente(){
+    public function ViewCadastroPaciente()
+    {
         $leito = new Leitos();
         $leitos_cadastrados = $leito->ExibirInfo();
 
@@ -76,17 +80,19 @@ class AdminController
         }
     }
 
-    public function ProcessarFormCadastroFunc(){
+    public function ProcessarFormCadastroFunc()
+    {
         if($_SERVER['REQUEST_METHOD'] === "POST" ){
             $nome = $_POST['nome'];
             $sexo = $_POST['sexo'];
             $idade = $_POST['idade'];
             $data_adimisao = $_POST['data_adimisao'];
             $cargo_id = $_POST['cargo'];
+            $setor_id = $_POST['setor'];
 
             $funcionario = new Funcionario();
 
-            $cadastro_func = $funcionario->Cadastrar($nome,$sexo,$idade,$data_adimisao,$cargo_id);
+            $cadastro_func = $funcionario->Cadastrar($nome,$sexo,$idade,$data_adimisao,$cargo_id,$setor_id);
             if($cadastro_func){
                 echo("<script>alert('Funcionário cadastrado com sucesso!');</script>");
             } else {

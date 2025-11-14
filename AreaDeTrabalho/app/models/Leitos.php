@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__ . '/../../config/Conexao.php';
 
@@ -15,6 +15,54 @@ class Leitos
     }
     
     /**
+     * Login
+     *
+     * @param  mixed $num_leito
+     * @return void
+     */
+    public function Login($num_leito)
+    {
+            $sql = 'SELECT 
+            leitos.id AS id_leito,
+            leitos.num_leito,
+            leitos.id_setor,
+            leitos.status_leito,
+            pacientes.id AS id_paciente,
+            pacientes.nome,
+            pacientes.sexo,
+            pacientes.idade,
+            pacientes.id_func_resp
+        FROM leitos
+        INNER JOIN pacientes ON pacientes.id_leito = leitos.id 
+        WHERE leitos.num_leito = ?';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("i", $num_leito);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+
+                $dados = $result->fetch_assoc();
+
+                $_SESSION['id_leito']        = $dados['id_leito'];
+                $_SESSION['num_leito']       = $dados['num_leito'];
+                $_SESSION['id_setor']        = $dados['id_setor'];
+                $_SESSION['status_leito']    = $dados['status_leito'];
+                $_SESSION['id_paciente']     = $dados['id_paciente'];
+                $_SESSION['nome_paciente']   = $dados['nome'];
+                $_SESSION['sexo']            = $dados['sexo'];
+                $_SESSION['idade']           = $dados['idade'];
+                $_SESSION['id_func_resp']    = $dados['id_func_resp'];
+
+                return true;
+            } else {
+                return false;
+            }
+    }
+
+    /**
      * Cadastrar
      *
      * @param  mixed $num_leito
@@ -25,13 +73,13 @@ class Leitos
     public function Cadastrar($num_leito, $id_setor, $status_leito)
     {
         $sql = "INSERT INTO leitos (num_leito, id_setor, status_leito) VALUES (?, ?, ?)";
-        
+
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Erro ao preparar statement: " . $this->conn->error);
         }
 
-        
+
         $stmt->bind_param("iis", $num_leito, $id_setor, $status_leito);
 
         if ($stmt->execute()) {
@@ -40,8 +88,8 @@ class Leitos
             return "Erro ao cadastrar: " . $stmt->error;
         }
     }
-    
-    public function ExibirInfo() 
+
+    public function ExibirInfo()
     {
         $sql = "SELECT leitos.id, leitos.num_leito, setores.nome AS nome_setor
                 FROM leitos
@@ -51,15 +99,15 @@ class Leitos
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
-         
+
+
     /**
      * AlocarPaciente
      *
      * @param  mixed $id_leito
      * @return bool
      */
-    public function AlocarPaciente(int $id_leito): bool 
+    public function AlocarPaciente(int $id_leito): bool
     {
         $sql = "UPDATE leitos SET status_leito = 'Ocupado' WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -67,7 +115,4 @@ class Leitos
 
         return $stmt->execute();
     }
-
 }
-
-?>

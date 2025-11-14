@@ -36,7 +36,7 @@
             <div class="col-12" id="bem_vindo">
                 <div class="p-4 bg-white rounded shadow-sm border-start border-primary border-5">
                     <h1 class="text-primary">
-                        Bem Vindo, <span class="fw-bold">Paciente Exemplo</span>
+                        Bem Vindo, <span class="fw-bold"><?php $_SESSION['nome_paciente']?></span>
                     </h1>
                     <p class="mb-0">
                         Use o formulário abaixo para solicitar serviços de suporte. Preencha o tipo de pedido e forneça uma breve descrição.
@@ -54,9 +54,7 @@
                         <input type="hidden" name="status_pedido" value="Pendente"> <input type="hidden" name="id_paciente" value="123">       <input type="hidden" name="id_setor" value="1">           <div class="mb-3">
                             <label class="form-label fw-bold">Selecione o Tipo de Pedido:</label>
                             <div class="d-flex flex-wrap gap-3" id="box-btn-tipo_pedido">
-                                
                             <!-- Botões para seleção do especialista -->
-
                                 <button type="submit" name="tipo_pedido" value="enfermagem" class="btn btn-outline-primary btn-lg d-flex align-items-center" style="min-width:200px">
                                     <span style="padding: 10px;">
                                         <i class="fa-solid fa-user-doctor fa-2x" style="padding-right: 10px;"></i>

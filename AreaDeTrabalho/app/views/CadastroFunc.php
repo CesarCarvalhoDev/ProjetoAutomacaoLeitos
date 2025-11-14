@@ -36,6 +36,14 @@
             <input type="number" name="idade"required />
             <label for="">Data de admisao</label>
             <input type="date" name="data_adimisao" required/>
+            <label for="">Setor</label>
+            <select name="setor" id="">
+                <?php 
+                foreach ($setores_cadastrados as $setor) {
+                    echo("<option value='{$setor['id']}'>{$setor['nome']}</option>");
+                }
+                ?> 
+            </select>
             <label for="">Cargo</label>
             <select name="cargo" id="" required>
               <?php 

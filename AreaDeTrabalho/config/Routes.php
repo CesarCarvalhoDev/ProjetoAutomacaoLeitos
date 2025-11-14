@@ -2,7 +2,9 @@
 // Arquivo: config/routes.php
 
 return [
-    '/' => 'HomeController@index',
+    '/' => 'TotemController@index',
+    'Login/submit' => 'TotemController@ProcessarFormLogin',
+    'Home' => 'TotemController@ViewHomePedido',
     'Admin'=> 'AdminController@ViewAdmin',
     'admin/login' => 'AdminController@ViewLogin',
     'admin/login/submit'=>'AdminController@ProcessarFormLogin',

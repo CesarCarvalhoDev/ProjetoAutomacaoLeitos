@@ -21,7 +21,8 @@ class Funcionario
 
     public function Login($email, $senha)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM funcionarios WHERE email = ? LIMIT 1");
+        $sql = "SELECT * FROM funcionarios WHERE email = ? LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -33,6 +34,7 @@ class Funcionario
         return null;
     }
 
+        
     /**
      * Cadastrar
      *
@@ -41,19 +43,20 @@ class Funcionario
      * @param  mixed $idade
      * @param  mixed $data_admissao
      * @param  mixed $cargo_id
+     * @param  mixed $setor_id
      * @return void
      */
-    public function Cadastrar(string $nome, string  $sexo, int  $idade, string $data_admissao, int $cargo_id)
+    public function Cadastrar(string $nome, string  $sexo, int  $idade, string $data_admissao, int $cargo_id, int $setor_id)
     {
-        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, id_func_responsavel) 
-                VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, cargo_id,setor_id) 
+                VALUES (?,?,?,?,?,?)";
 
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Erro ao preparar statement: " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssisi", $nome, $sexo, $idade, $data_admissao, $cargo_id);
+        $stmt->bind_param("ssisii", $nome, $sexo, $idade, $data_admissao, $cargo_id, $setor_id);
 
         return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar: " . $stmt->error;
     }
@@ -67,7 +70,8 @@ class Funcionario
         funcionarios.sexo,
         funcionarios.idade,
         funcionarios.data_admissao,
-        funcionarios.cargo_id
+        funcionarios.cargo_id,
+        funcionarios.setor_id
         FROM funcionarios 
         INNER JOIN cargos ON cargos.id = funcionarios.cargo_id
         WHERE cargos.descricao LIKE '%Medico%'";
