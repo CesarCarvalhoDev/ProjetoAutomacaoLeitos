@@ -13,7 +13,7 @@ nome VARCHAR(100) NOT NULL,
 sexo VARCHAR(10) NOT NULL,
 idade INT NOT NULL,
 data_admissao DATE NOT NULL,
-cargo_id VARCHAR(100) NOT NULL,
+cargo_id INT NOT NULL,
 email VARCHAR(100) NOT NULL,
 senha VARCHAR(100) NOT NULL,
 FOREIGN KEY (cargo_id) REFERENCES cargos(id)
