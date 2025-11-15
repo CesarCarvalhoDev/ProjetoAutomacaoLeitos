@@ -50,7 +50,8 @@ class TotemController
             $novo_pedido = $pedido->Criar($tipo_pedido,$descricao,$id_paciente,$id_setor);
             
             if($novo_pedido){
-                echo "<script>alert('Pedido realizado com sucesso');</script>";
+                header("Location: /Home/submit/success");
+                exit;
             }
         }
     }

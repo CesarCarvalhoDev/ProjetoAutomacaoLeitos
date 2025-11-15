@@ -37,9 +37,23 @@ class Pedido
         }
     }
 
-    public function AtribuirPedido()
+    public function ExibirPedidos()
     {
-        
+        $sql = " SELECT 
+        pedidos.id AS pedidos_id,
+        pedidos.status_pedido,
+        pedidos.tipo_pedido,
+        pedidos.descricao,
+        pedidos.id_paciente,
+        pedidos.id_setor,
+        pacientes.nome,
+        setores.nome
+        FROM pedidos
+        INNER JOIN pacientes
+        ON pacientes.id = pedidos.id_paciente
+        INNER JOIN setores
+        ON setores.id = pedidos.id_setor
+        ";
     }
 }
 ?>
