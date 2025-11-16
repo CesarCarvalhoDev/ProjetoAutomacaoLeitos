@@ -1,0 +1,35 @@
+use db_automacao_leitos;
+
+INSERT INTO cargos (descricao)
+VALUES
+("Enfermeiro"),
+("Camareiro"),
+("Cozinheiro"),
+("Manutenção");
+
+INSERT INTO funcionarios (nome,sexo,idade,data_admissao,cargo_id,email,senha)
+VALUES
+("Joy", "F", "29", "2024-09-12", "1", "enfermeira.joy@email.com", "senha"),
+("Hilda", "F", "46", "2016-01-15", "2", "camareira.hilda@gmail.com", "senha"),
+("Ana Maria", "F", "48", "2015-03-28", "3", "cozinheira.ana@gmail.com", "senha"),
+("Bob", "M", "32", "2020-04-03", "4", "manutencao.bob@gmail.coom", "senha");
+
+INSERT INTO setores (nome)
+VALUES
+("Enfermaria"),
+("Centro Cirúrgico"),
+("Maternidade");
+
+INSERT INTO leitos (num_leito, id_setor, status_leito)
+Values
+(103, 1, "Ocupado"),
+(204, 2, "Vazio"),
+(305, 3, "Manutenção");
+
+INSERT INTO pacientes (nome, sexo, idade, id_leito, id_func_resp)
+VALUES
+("João Maria", "M", 23, 1, 1);
+
+INSERT INTO pedidos(status_pedido, tipo_pedido, descricao, id_paciente, id_setor)
+VALUES
+("Novo", "enfermaria", "Dor de cabeça", 1, 1);
