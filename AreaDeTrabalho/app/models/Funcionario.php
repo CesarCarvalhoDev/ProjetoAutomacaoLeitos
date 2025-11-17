@@ -46,17 +46,17 @@ class Funcionario
      * @param  mixed $setor_id
      * @return void
      */
-    public function Cadastrar(string $nome, string  $sexo, int  $idade, string $data_admissao, int $cargo_id, int $setor_id)
+    public function Cadastrar(string $nome, string  $sexo, int  $idade, string $data_admissao, int $cargo_id, int $setor_id, string $email, string $senha)
     {
-        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, cargo_id,setor_id) 
-                VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO funcionarios (nome, sexo, idade, data_admissao, cargo_id,setor_id, email, senha) 
+                VALUES (?,?,?,?,?,?,?,?)";
 
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
             die("Erro ao preparar statement: " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssisii", $nome, $sexo, $idade, $data_admissao, $cargo_id, $setor_id);
+        $stmt->bind_param("ssisiiss", $nome, $sexo, $idade, $data_admissao, $cargo_id, $setor_id, $email, $senha);
 
         return $stmt->execute() ? "Cadastro Realizado" : "Erro ao Cadastrar: " . $stmt->error;
     }

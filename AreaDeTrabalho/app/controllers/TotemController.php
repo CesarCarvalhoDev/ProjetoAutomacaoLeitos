@@ -15,6 +15,11 @@ class TotemController
         require_once __DIR__ . '/../views/pedido.php';
     }
 
+    public function ViewMsgSucesso()
+    {
+        require_once __DIR__ . '/../views/MsgSucesso.php';
+    }
+
     public function ProcessarFormLogin()
     {
         session_start();

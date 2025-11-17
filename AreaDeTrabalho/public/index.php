@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+define('BASE_URL', 'http://localhost:8080');
 $routes = include __DIR__ . '/../config/routes.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

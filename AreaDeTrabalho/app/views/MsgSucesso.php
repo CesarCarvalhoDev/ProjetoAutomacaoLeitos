@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="2;url=/Home/">
+    <meta http-equiv="refresh" content="3;url=/Home/">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -31,7 +31,7 @@
                     </h1>
                 </div>
                 <div>
-                    <img src="\pngwing.com.png" alt="success" width="300px" class="d-block mx-auto">
+                    <img src="<?php echo BASE_URL; ?>/assets/pngwing.com.png" alt="success" width="300px" class="d-block mx-auto">
                 </div>
             </div>
         </div>

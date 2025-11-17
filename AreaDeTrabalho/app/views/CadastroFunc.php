@@ -52,6 +52,10 @@
               }
               ?>
             </select>
+            <label for="">Email:</label>
+            <input type="email" name="email" required>
+            <label for="">Senha:</label>
+            <input type="password" name="senha" required>
             <button type="submit" name="acao" class="btn btn-info">Cadastrar</button>
         </form>
     </main>
