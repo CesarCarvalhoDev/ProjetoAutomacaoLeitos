@@ -21,20 +21,23 @@ class Funcionario
 
     public function Login($email, $senha)
     {
-        $sql = "SELECT * FROM funcionarios WHERE email = ? LIMIT 1";
+        $sql = "SELECT funcionarios.*, setores.nome AS nome_setor
+                FROM funcionarios
+                INNER JOIN setores
+                ON setores.id = funcionarios.setor_id
+                WHERE email = ? LIMIT 1";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         $usuario = $result->fetch_assoc();
 
-        if ($usuario && password_verify($senha, $usuario['senha'])) {
+        if ($usuario && $senha === $usuario['senha']) {
             return $usuario;
         }
         return null;
     }
 
-        
     /**
      * Cadastrar
      *
@@ -63,8 +66,8 @@ class Funcionario
 
     public function ExibirMedicos()
     {
-        $sql = 
-        "SELECT 
+        $sql =
+            "SELECT 
         funcionarios.id,
         funcionarios.nome,
         funcionarios.sexo,

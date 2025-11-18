@@ -57,28 +57,34 @@ class AdminController
     }
 
     public function ProcessarFormLogin()
-    {
-        if (isset($_POST['acao']) && $_POST['acao'] === 'login') {
-
-            $email = $_POST['email'] ?? '';
-            $senha = $_POST['senha'] ?? '';
-
-            $funcionario = new Funcionario();
-            $usuario = $funcionario->Login($email, $senha);
-
-            if ($usuario) {
-                session_start();
-                $_SESSION['funcionario'] = $usuario;
-                if ($usuario['cargo_id'] == 7) {
-                    header("Location: Admin");
-                    exit();
-                } else {
-                    header("Location: Dashboard");
-                    exit();
-                }
-            }
-        }
+{
+    if (!isset($_POST['acao']) || $_POST['acao'] !== 'login') {
+        return;
     }
+
+    $email = $_POST['email'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+
+    $funcionario = new Funcionario();
+    $usuario = $funcionario->Login($email, $senha);
+
+    if (!$usuario) {
+        $_SESSION['erro_login'] = "Email ou senha inválidos!";
+        header("Location: /Admin/Login");
+        exit;
+    }
+
+    $_SESSION['funcionario'] = $usuario;
+
+    if (isset($usuario['cargo_id']) && $usuario['cargo_id'] == 7) {
+        header("Location: /Admin");
+        exit;
+    }
+
+    header("Location: /Func/Dashboard");
+    exit;
+}
+
 
     public function ProcessarFormCadastroFunc()
     {

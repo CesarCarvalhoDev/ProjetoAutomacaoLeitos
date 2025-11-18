@@ -80,7 +80,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="https://via.placeholder.com/30/ffffff/000000?text=L" alt="Logo" id="logo"
+                    <img src="/assets/273050775_611645833231749_8101898732572474785_n-fotor-bg-remover-20251117221339.png" alt="Logo" id="logo"
                         class="d-inline-block align-text-top me-2 rounded" />
                     Painel Administrativo
                 </a>
