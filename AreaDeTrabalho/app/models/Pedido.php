@@ -37,7 +37,7 @@ class Pedido
         }
     }
 
-    public function ExibirPedidos(int $id_setor)
+    public function ExibirPedidosSetor(int $id_setor)
     {
         $sql = " SELECT 
         pedidos.id AS pedidos_id,
@@ -58,6 +58,19 @@ class Pedido
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i",$id_setor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function ExibirPedidos()
+    {
+        $sql = "SELECT pedidos.*, pacientes.id AS paciente_id
+                FROM pedidos
+                INNER JOIN pacientes
+                ON pacientes.id = pedidos.id_paciente";
+
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

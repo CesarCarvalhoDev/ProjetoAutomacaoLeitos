@@ -39,7 +39,7 @@ class FuncController
         $usuario = $_SESSION['funcionario'];
 
         $pedido = new Pedido;
-        $pedidos = $pedido->ExibirPedidos($usuario['setor_id']);
+        $pedidos = $pedido->ExibirPedidosSetor($usuario['setor_id']);
 
         require_once __DIR__ . "/../views/vizualizarPedido.php";
     }

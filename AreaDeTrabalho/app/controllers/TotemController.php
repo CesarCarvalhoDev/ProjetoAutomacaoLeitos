@@ -12,6 +12,9 @@ class TotemController
 
     public function ViewHomePedido()
     {
+        $pedido = new Pedido;
+        $pedidos_paciente = $pedido->ExibirPedidos();
+
         require_once __DIR__ . '/../views/pedido.php';
     }
 
