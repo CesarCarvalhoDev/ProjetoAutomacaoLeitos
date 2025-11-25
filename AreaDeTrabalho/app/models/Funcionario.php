@@ -21,11 +21,26 @@ class Funcionario
 
     public function Login($email, $senha)
     {
-        $sql = "SELECT funcionarios.*, setores.nome AS nome_setor
+        $sql = "SELECT  
+                funcionarios.id AS id_func,
+                funcionarios.nome AS nome_func,
+                funcionarios.sexo,
+                funcionarios.idade,
+                funcionarios.data_admissao,
+                funcionarios.cargo_id,
+                funcionarios.email,
+                funcionarios.senha,
+                funcionarios.setor_id,
+                setores.nome AS nome_setor,
+                cargos.descricao AS descricao_cargo
                 FROM funcionarios
-                INNER JOIN setores
-                ON setores.id = funcionarios.setor_id
-                WHERE email = ? LIMIT 1";
+                INNER JOIN setores 
+                    ON setores.id = funcionarios.setor_id
+                INNER JOIN cargos 
+                    ON cargos.id = funcionarios.cargo_id
+                WHERE funcionarios.email = ?
+                LIMIT 1";
+
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -84,4 +99,38 @@ class Funcionario
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function ExibirInfoFunc($id_)
+    {
+        $sql = "SELECT  
+            id as id_func,
+            nome as nome_func,
+            sexo,
+            idade,
+            data_admissao,
+            cargo_id,
+            email,
+            senha,
+            setor_id,
+            setores.nome as nome_setor,
+            cargos.descricao as descricao_cargo
+            FROM funcionarios
+            INNER JOIN setores ON setores.id = funcionarios.setor_id
+            INNER JOIN cargos ON cargos.id = funcionarios.cargo_id
+            WHERE id_func = ?
+        ";
+    }
 }
+
+/*
+$funcionario = new Funcionario;
+$usuario = $funcionario->Login("teste2@gmail.com", "1234");
+
+if ($usuario) {
+    foreach ($usuario as $campo => $valor) {
+        echo $campo . ": " . $valor . "\n";
+    }
+} else {
+    echo "Usuário não encontrado ou senha incorreta.";
+}
+*/

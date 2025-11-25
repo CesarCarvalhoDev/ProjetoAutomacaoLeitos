@@ -27,7 +27,7 @@
             <div class="col-12" id="bem_vindo">
                 <div class="border-5 mb-5 my-5">
                     <h1 class="text-primary text-center">
-                        Cadastro realizado com sucesso! <span class="fw-bold"></span>
+                        Pedido realizado com sucesso! <span class="fw-bold"></span>
                     </h1>
                 </div>
                 <div>

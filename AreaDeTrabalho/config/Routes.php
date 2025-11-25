@@ -9,6 +9,7 @@ return [
     'Home/submit/success' => 'TotemController@ViewMsgSucesso',
     'Func/Login' => 'FuncController@ViewLogin',
     'Func/Login/submit' => 'FuncController@ProcessarFormLogin',
+    'Func/ProcessarAcaoPedido' => 'FuncController@ProcessarAcaoPedido',
     'Func/Dashboard' => 'FuncController@ViewPedidos',
     'Admin'=> 'AdminController@ViewAdmin',
     'Admin/Login' => 'AdminController@ViewLogin',

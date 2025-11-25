@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__ . '/../../config/Conexao.php';
 
@@ -11,11 +11,11 @@ class Pedido
         $this->conn = Conexao::ConexaoBancoDeDados();
     }
 
-    public function Criar(string $tipo_pedido,string $descricao,int $id_paciente,int $id_setor)
+    public function Criar(string $tipo_pedido, string $descricao, int $id_paciente, int $id_setor)
     {
         $sql = "INSERT INTO pedidos (tipo_pedido, descricao, id_paciente, id_setor) 
                 VALUES (?, ?, ?, ?)";
-        
+
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
@@ -46,6 +46,7 @@ class Pedido
         pedidos.descricao,
         pedidos.id_paciente,
         pedidos.id_setor,
+        pedidos.id_func_responsavel,
         pacientes.nome AS nome_paciente,
         setores.nome   AS nome_setor
         FROM pedidos
@@ -57,7 +58,7 @@ class Pedido
         ";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i",$id_setor);
+        $stmt->bind_param("i", $id_setor);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -75,5 +76,47 @@ class Pedido
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function ExibirPedidosFunc($id_func)
+    {
+        $sql = "SELECT pedidos.*, pacientes.nome AS nome_paciente
+                FROM pedidos 
+                INNER JOIN pacientes ON pacientes.id = pedidos.id_paciente 
+                WHERE id_func_responsavel = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i",$id_func);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function AtribuirPedido(int $id_pedido, int $id_func)
+    {
+        $sql = "UPDATE pedidos
+            SET id_func_responsavel = ?, status_pedido = 'Em andamento'
+            WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $id_func, $id_pedido);
+
+        if ($stmt->execute()) {
+            return $stmt->affected_rows; 
+        } else {
+            return false;
+        }
+    }
+
+    public function ConcluirPedido($id_pedido)
+    {
+        $sql = "UPDATE pedidos 
+                SET status_pedido = 'Concluido'
+                WHERE pedidos.id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i',$id_pedido);
+        if ($stmt->execute()) {
+            return $stmt->affected_rows; 
+        } else {
+            return false;
+        }
+    }
 }
-?>

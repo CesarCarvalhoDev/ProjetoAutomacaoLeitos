@@ -33,9 +33,6 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Sistema de Requisições</a>
-                <div class="d-flex">
-                    <a href="" class="btn btn-outline-light">Voltar ao Painel</a>
-                </div>
             </div>
         </nav>
     </header>
@@ -65,7 +62,7 @@
             <!-- FORMULÁRIO -->
             <div class="col-lg-8 col-12 mb-4">
                 <form action="/AreaDeTrabalho/public/Home/submit" method="POST" id="form-requisicao">
-                    <div class="card p-4 shadow border-0">
+                    
 
                         <h2 class="card-title mb-4 text-secondary">Formulário de Pedido de Serviço</h2>
 
@@ -138,7 +135,7 @@
                             </button>
                         </div>
 
-                    </div>
+                    
                 </form>
             </div>
 
